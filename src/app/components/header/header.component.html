@@ -1,0 +1,15 @@
+<nav class="bg-slate-300 p-4">
+    <ul class="flex justify-between items-center  pr-8">
+        <li class="text-center">
+            <app-menu class="justify-center items-center"></app-menu>
+            <a routerLink="/" class="cursor-pointer text-2xl text-center">Book_Store</a>
+        <li>
+        <li class="flex justify-center items-center">
+            <input type="text" placeholder="Search" [(ngModel)]="searchText" class="border-black outline-none rounded-md h-9 w-96 p-2 max-w-2xl m-2" />
+            <a [routerLink]="['/cart']" class="cursor-pointer">
+                <img src="assets/shopping-cart.png" height="40px" width="40px" />
+            </a>
+        </li>
+    </ul>
+
+</nav>

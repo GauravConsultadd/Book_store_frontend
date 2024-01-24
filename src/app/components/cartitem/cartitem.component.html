@@ -1,0 +1,16 @@
+
+      <!-- Sample Cart Item (Repeat this block for each item) -->
+      <div class="bg-white p-6 rounded-md shadow-md">
+        <div class="mb-4 flex justify-between cursor-pointer" (click)="onClick()">
+            <div>
+                <h2 class="text-xl font-semibold">{{book?.title}}</h2>
+                <p class="text-gray-600">Price: {{cartItem.price}}</p>
+            </div>
+            <img src={{book?.cover_image_url}} alt="cart book" class="h-32 w-32" />
+        </div>
+        <div class="flex justify-between items-center">
+          <p class="text-gray-600">Quantity: {{cartItem.quantity}}</p>
+          <button class="text-red-500 hover:text-red-700" (click)="removeFromCart()">Remove From Cart</button>
+        </div>
+      </div>
+

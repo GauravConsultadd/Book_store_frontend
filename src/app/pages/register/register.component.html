@@ -1,0 +1,52 @@
+
+<form (ngSubmit)="onSubmit()" class="bg-gray-100 flex items-center justify-center h-screen">
+
+    <div class="bg-white p-8 rounded shadow-md w-96">
+  
+      <h2 class="text-2xl font-semibold mb-6">Registration Form</h2>
+  
+  
+        <div class="mb-4">
+          <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+          <input type="text" id="username" name="username" [(ngModel)]="username"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            placeholder="Enter your username" required>
+        </div>
+  
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+          <input type="email" id="email" name="email" [(ngModel)]="email"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            placeholder="Enter your email" required>
+        </div>
+  
+        <div class="mb-4">
+          <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+          <input type="password" id="password" name="password" [(ngModel)]="password"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            placeholder="Enter your password" required>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Role</label>
+          <div class="flex items-center">
+            <input type="radio" id="buyer" name="role" value="Buyer" [(ngModel)]="selectedRole"
+              class="mr-2">
+            <label for="buyer" class="text-sm">Buyer</label>
+          </div>
+          <div class="flex items-center mt-2">
+            <input type="radio" id="seller" name="role" value="Seller" [(ngModel)]="selectedRole"
+              class="mr-2">
+            <label for="seller" class="text-sm">Seller</label>
+          </div>
+        </div>
+  
+        <button type="submit"
+          class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+          Sign Up
+        </button>
+
+  
+    </div>
+  
+  </form>

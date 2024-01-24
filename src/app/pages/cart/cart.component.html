@@ -1,0 +1,6 @@
+<div class="container mx-auto p-8">
+    <div class="grid grid-cols-1 gap-8" *ngIf="books">
+        <app-cartitem *ngFor="let cartItem of cart" [cartItem]="cartItem" [books]="books"></app-cartitem>
+    </div>
+    
+</div>
