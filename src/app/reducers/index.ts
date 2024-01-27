@@ -6,6 +6,7 @@ import { inventoryReducer, inventoryState } from './inventory';
 import { genreReducer, genreState } from './genre';
 import { adminReducer, adminState } from './admin';
 import { orderReducer, orderState } from './order';
+import { searchReducer, searchState } from './search';
 
 export interface AppState {
     user: userState
@@ -14,7 +15,8 @@ export interface AppState {
     inventory: inventoryState
     genre: genreState,
     admin: adminState,
-    order: orderState
+    order: orderState,
+    search: searchState
     // Add other feature states as needed
   }
 
@@ -25,6 +27,7 @@ export const rootReducer: ActionReducerMap<AppState> = {
     inventory: inventoryReducer,
     genre: genreReducer,
     admin: adminReducer,
-    order: orderReducer
+    order: orderReducer,
+    search: searchReducer
     // Add other feature reducers as needed
 };

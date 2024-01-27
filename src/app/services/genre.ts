@@ -34,11 +34,10 @@ export class GenreService {
             'Authorization': `Bearer ${access_token}`,
         });
 
-        console.log(name,description,id)
         return this.http.put(`${this.baseUrl}/genres/${id}/`,{name,description},{headers: headers})
     }
 
-    deleteGenre(id: number) {
+    deleteGenre(id: number): Observable<any> {
         let access_token = localStorage.getItem('access_token')
         let headers = new HttpHeaders({
             'Content-Type': 'application/json', 
@@ -46,6 +45,26 @@ export class GenreService {
         });
 
         return this.http.delete(`${this.baseUrl}/genres/${id}/`,{headers: headers})
+    }
+
+    getGenreNames(): Observable<any> {
+        let access_token = localStorage.getItem('access_token')
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${access_token}`,
+        });
+
+        return this.http.get(`${this.baseUrl}/genres/names/`,{headers: headers})
+    }
+
+    getAuthorNames(): Observable<any> {
+        let access_token = localStorage.getItem('access_token')
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${access_token}`,
+        });
+
+        return this.http.get(`${this.baseUrl}/books/authors/`,{headers: headers})
     }
 
 

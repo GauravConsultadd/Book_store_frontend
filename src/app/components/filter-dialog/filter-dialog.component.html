@@ -1,0 +1,22 @@
+<div class="filter-dialog p-5">
+    <h3 class="font-bold text-xl">Filter By:</h3>
+    
+    <div class="flex mt-3 justify-between">
+
+        <div>
+          <label class="font-semibold text-lg">Authors:</label>
+          <div *ngFor="let author of authors">
+            <input type="checkbox" [(ngModel)]="author.isSelected" [value]="author">{{ author.name }}
+          </div>
+        </div>
+      
+        <div>
+          <label class="font-semibold text-lg">Genres:</label>
+          <div *ngFor="let genre of genres">
+            <input type="checkbox" [(ngModel)]="genre.isSelected" [value]="genre">{{ genre.name }}
+          </div>
+        </div>
+    </div>
+  
+    <button (click)="applyFilters()" class="cursor-pointer bg-blue-500 p-3 mt-5 rounded-md">Apply Filters</button>
+  </div>

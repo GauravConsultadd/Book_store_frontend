@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Book } from "../models/book";
-import { createBook, createBookFailure, createBookSuccess, deleteBook, deleteBookFailure, deleteBookSuccess, getAllBooks, getAllBooksFailure, getAllBooksSuccess, updateBook, updateBookFailure, updateBookSuccess } from "../actions/books";
+import { createBook, createBookFailure, createBookSuccess, deleteBook, deleteBookFailure, deleteBookSuccess, getAllBooks, getAllBooksFailure, getAllBooksSuccess, searchBook, searchBookFailure, searchBookSuccess, updateBook, updateBookFailure, updateBookSuccess } from "../actions/books";
 
 export interface bookState {
     loading: boolean,
@@ -31,4 +31,8 @@ export const bookReducer = createReducer(
     on(createBook,state=> ({...state,loading: true})),
     on(createBookSuccess,(state,{books,inventory})=> ({...state,loading: false,books,error: null})),
     on(createBookFailure,(state,{error})=> ({...state,loading: false,error})),
+
+    on(searchBook,state => ({...state,loading: true})),
+    on(searchBookSuccess,(state,{books}) => ({...state,loading: true,books})),
+    on(searchBookFailure,(state,{error}) => ({...state,loading: true,error})),
 )

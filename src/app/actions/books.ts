@@ -21,6 +21,6 @@ export const createBook = createAction('CREATE_BOOK',props<{book: updateBookMode
 export const createBookSuccess = createAction('CREATE_BOOK_SUCCESS',props<{books: Book[],inventory: Book[]}>())
 export const createBookFailure = createAction('CREATE_BOOK_FAILURE',props<{error: any}>())
 
-
-
-// export const updateBook = createAction('UPDATE_BOOK',props<{}>())
+export const searchBook = createAction('SEARCH_BOOK',props<{searchText: string,authors: string[],genres: string[]}>())
+export const searchBookSuccess = createAction('SEARCH_BOOK_SUCCESS',props<{books: Book[]}>())
+export const searchBookFailure = createAction('SEARCH_BOOK_FAILURE',props<{error: any}>())

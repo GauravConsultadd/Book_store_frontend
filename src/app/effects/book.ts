@@ -3,7 +3,7 @@ import { BookService } from "../services/book";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 
 import * as bookActions from '../actions/books'
-import { catchError, exhaustMap, map, of, tap } from "rxjs";
+import { catchError, exhaustMap, map, of, switchMap, tap } from "rxjs";
 
 
 @Injectable()
@@ -59,6 +59,16 @@ export class BookEffects {
             exhaustMap(({book})=> this.bookService.createBook(book).pipe(
                 map((res: any) => bookActions.createBookSuccess({books: res.books,inventory: res.inventory})),
                 catchError((err) => of(bookActions.createBookFailure({error: err})))
+            ))
+        )
+    )
+
+    searchBook = createEffect(()=> 
+        this.actions.pipe(
+            ofType(bookActions.searchBook),
+            switchMap(({searchText,authors,genres})=> this.bookService.searchBook(searchText,authors,genres).pipe(
+                map((res: any)=> bookActions.searchBookSuccess({books: res.books})),
+                catchError((err: any)=> of(bookActions.searchBookFailure({error: err})))
             ))
         )
     )

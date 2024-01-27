@@ -45,6 +45,26 @@ export class GenreEffect {
             ))
         )
     )
+
+    getGenreNames= createEffect(()=>
+        this.actions.pipe(
+            ofType(genreActions.getGenreNames),
+            exhaustMap(()=> this.genreService.getGenreNames().pipe(
+                map((res: any)=> genreActions.getGenreNamesSuccess({genres: res.genres})),
+                catchError((err: any)=> of(genreActions.getGenreNamesFailure({error: err})))
+            ))
+        )
+    )
+
+    getAuthorNames= createEffect(()=>
+        this.actions.pipe(
+            ofType(genreActions.getAllAuthors),
+            exhaustMap(()=> this.genreService.getAuthorNames().pipe(
+                map((res: any)=> genreActions.getAllAuthorsSuccess({authors: res.authors})),
+                catchError((error: any)=> of(genreActions.getAllAuthorsFailure({error: error})))
+            ))
+        )
+    )
     
     constructor(private actions: Actions,private genreService: GenreService) {}
 }

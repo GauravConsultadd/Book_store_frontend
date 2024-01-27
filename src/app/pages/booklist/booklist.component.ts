@@ -17,10 +17,16 @@ import { BookCardComponent } from '../../components/book-card/book-card.componen
 export class BooklistComponent implements OnInit, OnDestroy {
   books=[]
   bookSubscription !: Subscription
+  isEmpty : boolean = false
 
   ngOnInit(): void {
       this.store.dispatch(getAllBooks())
-      this.bookSubscription = this.store.select('book').subscribe((data:any)=> {this.books=data.books})
+      this.bookSubscription = this.store.select('book').subscribe((data:any)=> {
+        this.books=data.books
+
+        if(!this.books || this.books.length===0) this.isEmpty=true
+        else this.isEmpty=false
+      })
   }
 
   ngOnDestroy(): void {
