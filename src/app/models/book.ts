@@ -7,8 +7,18 @@ export interface Book {
     cover_image_url: string,
     author: string,
     description: string,
-    genre: Genre,
+    genre: string,
     price: number,
     published_by: User,
-    is_availabe: boolean
+    is_available: boolean
+}
+
+export interface updateBookModel {
+    id:number,
+    title: string,
+    cover_image_url: string,
+    author: string,
+    description: string,
+    genre: string,
+    price: number,
 }

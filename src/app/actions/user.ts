@@ -23,3 +23,7 @@ export const getCurrentUserFailure = createAction('GET_USER_FAILURE',props<{erro
 export const logoutUser = createAction('LOGOUT_USER')
 export const logoutUserSuccess = createAction('LOGOUT_USER_SUCCESS')
 export const logoutUserFailure = createAction('LOGOUT_USER_FAILURE',props<{error: any}>())
+
+export const getAllUser = createAction('GET_ALL_USER')
+export const getAllUserSuccess = createAction('GET_ALL_USER_SUCCESS',props<{users: User[]}>())
+export const getAllUserFailure = createAction('GET_ALL_USER_FAILURE',props<{error: any}>())

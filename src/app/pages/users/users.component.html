@@ -1,0 +1,20 @@
+<div class="w-full mt-5">
+    <table class="min-w-full table-auto bg-white border border-gray-300">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="py-2 px-4 border-b border-r" style="width: 10%;">ID</th>
+                <th class="py-2 px-4 border-b border-r" style="width: 30%;">Username</th>
+                <th class="py-2 px-4 border-b border-r" style="width: 30%;">Email</th>
+                <th class="py-2 px-4 border-b" style="width: 30%;">Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td class="py-2 px-4 border-b border-r text-center" style="width: 10%;">{{ user.id }}</td>
+                <td class="py-2 px-4 border-b border-r text-center" style="width: 30%;">{{ user.username }}</td>
+                <td class="py-2 px-4 border-b border-r text-center" style="width: 30%;">{{ user.email }}</td>
+                <td class="py-2 px-4 border-b text-center" style="width: 30%;">{{ user.role }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

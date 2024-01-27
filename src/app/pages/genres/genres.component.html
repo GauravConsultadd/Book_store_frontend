@@ -1,0 +1,27 @@
+<div class="w-screen">
+    <div class="mx-auto container max-w-6xl">
+        <div class="w-full flex justify-between items-center p-4 bg-gray-200">
+            <div class="text-lg font-bold hidden md:block">Your Inventory</div>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="openDialog(null,true)">
+                Add Genre
+            </button>
+        </div>
+
+
+<div class="w-full mt-5">
+    <table class="min-w-full table-auto bg-white border border-gray-300">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="py-2 px-4 border-b border-r" style="width: 10%;">ID</th>
+                <th class="py-2 px-4 border-b border-r" style="width: 50%;">Genres</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let genre of genres" (click)="openDialog(genre,false)">
+                <td class="py-2 px-4 border-b border-r text-center" style="width: 10%;">{{ genre.id }}</td>
+                <td class="py-2 px-4 border-b border-r text-center" style="width: 50%;">{{ genre.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    </div>

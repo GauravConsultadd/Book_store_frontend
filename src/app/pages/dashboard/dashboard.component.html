@@ -1,0 +1,19 @@
+<div class="container w-screen mx-auto mt-5 md:mt-7 lg:mt-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto gap-3 md:gap-5">
+        <a [routerLink]="['/dashboard/users']">
+            <div class="w-full bg-slate-500 h-52 flex justify-center items-center font-bold text-lg rounded-lg cursor-pointer">Users</div>
+        </a>
+
+        <a [routerLink]="['/dashboard/books']">
+            <div class="w-full bg-red-500 h-52 flex justify-center items-center font-bold text-lg rounded-lg cursor-pointer">Books</div>
+        </a>
+
+        <a [routerLink]="['/dashboard/genres']">
+            <div class="w-full bg-green-500 h-52 flex justify-center items-center font-bold text-lg rounded-lg cursor-pointer">Genres</div>
+        </a>
+
+        <a [routerLink]="['/dashboard/orders']">
+            <div class="w-full bg-yellow-500 h-52 flex justify-center items-center font-bold text-lg rounded-lg cursor-pointer">Orders</div>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<form (ngSubmit)="onSubmit()" class="m-5">
+    <h2 class="text-2xl font-extrabold" *ngIf="isUpdate">Update Book</h2>
+    <h2 class="text-2xl font-extrabold" *ngIf="!isUpdate">Create Book</h2>
+
+    <label for="title" class="w-full">
+        <div class="font-semibold text-lg">Title </div>
+        <input type="text" name="title" required [placeholder]="!title && 'Title'" [(ngModel)]="title" id="title" class=" w-full p-2 border rounded-md outline-gray-600 border-black"/>
+    </label>
+
+    <label for="description" class="w-full">
+        <div class="font-semibold text-lg">Description: </div>
+        <input type="text" name="description" required [placeholder]="!description && 'Description'" [(ngModel)]="description" id="description" class=" w-full p-2 border rounded-md outline-gray-600 border-black" />
+    </label>
+
+    <label for="image" class="w-full">
+        <div class="font-semibold text-lg">Image Url: </div>
+        <input type="text" name="image" required [placeholder]="!cover_image_url && 'Image Url'"  [(ngModel)]="cover_image_url" id="image" class="w-full p-2 border rounded-md outline-gray-600 border-black" />
+    </label>
+
+    <label for="genre" class="w-full">
+        <div class="font-semibold text-lg">Genre: </div>
+        <!-- <input type="text" name="genre" required="" [placeholder]="!genre && 'Genre'" [(ngModel)]="genre" id="genre" class=" w-full p-2 border rounded-md outline-gray-600 border-black" /> -->
+        <select [(ngModel)]="genre" name="genre" required id="genre" class=" w-full p-2 border rounded-md outline-gray-600 border-black">
+            <option *ngFor="let option of genres" [value]="option.name">{{ option.name }}</option>
+        </select>
+    </label>
+
+    <label for="author" class="w-full">
+        <div class="font-semibold text-lg">Author: </div>
+        <input type="text" name="author" required [placeholder]="!author && 'Author'" [(ngModel)]="author"  id="author" class=" w-full p-2 border rounded-md outline-gray-600 border-black" />
+    </label>
+
+    <label for="price" class="w-full">
+        <div class="font-semibold text-lg">Price: </div>
+        <input type="text" name="price" required [placeholder]="!price && 'Price'" [(ngModel)]="price" id="price" class=" w-full p-2 border rounded-md outline-gray-600 border-black" />
+    </label>
+
+    <button type="submit" class="bg-blue-500 rounded-md mt-5">
+        <p class="p-2" *ngIf="isUpdate">Update Book</p>
+        <p class="p-2" *ngIf="!isUpdate">Create Book</p>
+    </button>
+
+</form>

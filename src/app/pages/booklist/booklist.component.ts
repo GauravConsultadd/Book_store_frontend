@@ -20,7 +20,7 @@ export class BooklistComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
       this.store.dispatch(getAllBooks())
-      this.bookSubscription = this.store.select('book').subscribe((data:any)=> {this.books=data.books},(err) => alert(err))
+      this.bookSubscription = this.store.select('book').subscribe((data:any)=> {this.books=data.books})
   }
 
   ngOnDestroy(): void {

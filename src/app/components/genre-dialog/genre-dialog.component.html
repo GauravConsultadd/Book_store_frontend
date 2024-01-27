@@ -1,0 +1,25 @@
+<form class="m-5">
+    <h2 class="text-2xl font-extrabold">Genres</h2>
+
+    <label for="name" class="w-full">
+        <div class="font-semibold text-lg">Name </div>
+        <input type="text" name="name" required [placeholder]="!name && 'name'" [(ngModel)]="name" id="title" class=" w-full p-2 border rounded-md outline-gray-600 border-black"/>
+    </label>
+
+    <label for="description" class="w-full">
+        <div class="font-semibold text-lg">Description: </div>
+        <input type="text" name="description" required [placeholder]="!description && 'Description'" [(ngModel)]="description" id="description" class=" w-full p-2 border rounded-md outline-gray-600 border-black" />
+    </label>
+
+    <div class="flex justify-between">
+        <button type="submit" class="bg-blue-500 rounded-md mt-5">
+            <p class="p-2" *ngIf="genre" (click)="updateGenre()">Update Genre</p>
+            <p class="p-2" *ngIf="!genre" (click)="createGenre()">Create Book</p>
+        </button>
+    
+        <button type="submit" class="bg-red-500 rounded-md mt-5">
+            <p class="p-2" *ngIf="genre" (click)="deleteGenre()">Delete Genre</p>
+        </button>
+    </div>
+
+</form>

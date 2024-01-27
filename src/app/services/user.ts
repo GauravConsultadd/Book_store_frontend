@@ -29,6 +29,7 @@ export class UserService {
 
     getUser(): Observable<any> {
         let access_token = localStorage.getItem('access_token')
+        // console.log("ac token", access_token);
         console.log("here in getUser()")
         if(access_token) {
             const headers = new HttpHeaders({
@@ -48,6 +49,20 @@ export class UserService {
             'Content-Type': 'application/json', 
             'Authorization': `Bearer ${access_token}`,
         });
+
+        localStorage.clear()
         return this.http.post(`${this.baseUrl}/users/logout/`,{refresh_token: refresh_token},{headers: headers})
+    }
+
+    getAllUser(): Observable<any> {
+        let refresh_token = localStorage.getItem('refresh_token')
+        let access_token = localStorage.getItem('access_token')
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${access_token}`,
+        });
+
+        return this.http.get(`${this.baseUrl}/users/admin/`,{headers: headers})
     }
 }

@@ -71,5 +71,15 @@ export class UserEffects {
       )
   )
 
+  getAllUser = createEffect(()=> 
+      this.actions$.pipe(
+        ofType(userAction.getAllUser),
+        exhaustMap(() => this.userService.getAllUser().pipe(
+          map((res:any)=> userAction.getAllUserSuccess({users: res.users})),
+          catchError((err)=> of(userAction.getAllUserFailure({error: err})))
+        ))
+      )
+  )
+
   constructor(private actions$: Actions, private userService: UserService,private router: Router) {}
 }

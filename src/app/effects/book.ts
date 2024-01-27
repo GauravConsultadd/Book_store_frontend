@@ -33,5 +33,37 @@ export class BookEffects {
         )
     )
 
+    deleteBook = createEffect(()=> 
+        this.actions.pipe(
+            ofType(bookActions.deleteBook),
+            exhaustMap(({id})=> this.bookService.deleteBook(id).pipe(
+                map((res: any) => bookActions.deleteBookSuccess({books: res.books,inventory: res.inventory})),
+                catchError((err)=> of(bookActions.deleteBookFailure({error: err}))
+            ))
+        )
+    ))
+
+    updatebook = createEffect(()=>
+        this.actions.pipe(
+            ofType(bookActions.updateBook),
+            exhaustMap(({book})=> this.bookService.updateBook(book).pipe(
+                map((res: any) => bookActions.updateBookSuccess({books: res.books,inventory: res.inventory})),
+                catchError((err) => of(bookActions.updateBookFailure({error: err})))
+            ))
+        )
+    )
+
+    createBook = createEffect(()=>
+        this.actions.pipe(
+            ofType(bookActions.createBook),
+            exhaustMap(({book})=> this.bookService.createBook(book).pipe(
+                map((res: any) => bookActions.createBookSuccess({books: res.books,inventory: res.inventory})),
+                catchError((err) => of(bookActions.createBookFailure({error: err})))
+            ))
+        )
+    )
+
+    
+
     constructor(private actions: Actions,private bookService: BookService) {}
 }

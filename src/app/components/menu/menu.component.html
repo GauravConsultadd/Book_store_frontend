@@ -1,13 +1,13 @@
 <button mat-button [matMenuTriggerFor]="menu"><img src="assets/menu.png" height="40px" width="40px" /></button>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>Account</button>
-  <button mat-menu-item>Orders</button>
+  <button mat-menu-item [routerLink]="['/orders']">My Orders</button>
   <button mat-menu-item>About</button>
-  <button mat-menu-item>Contact</button>
   <button mat-menu-item (click)="logout()">Logout</button>
 
   <!-- protected for admin -->
-  <button mat-menu-item *ngIf="user!=null && user.role==='Admin'">Dashboard</button>
+  <a [routerLink]="['/dashboard']">
+    <button mat-menu-item *ngIf="user!=null && user.role==='Admin'">Dashboard</button>
+  </a>
 
   <!-- protected for sellers -->
   <a [routerLink]="['/inventory']">
