@@ -9,6 +9,8 @@ import { addToCart, removeFromCart } from '../../actions/carts';
 import { CartItem } from '../../models/cartItem';
 import { CommonModule, NgFor } from '@angular/common';
 import { createOrder } from '../../actions/orders';
+import { MatDialog } from '@angular/material/dialog';
+import { CheckoutComponent } from '../../components/checkout/checkout.component';
 
 @Component({
   selector: 'app-book-details',
@@ -18,7 +20,7 @@ import { createOrder } from '../../actions/orders';
   styleUrl: './book-details.component.css'
 })
 export class BookDetailsComponent implements OnInit,OnDestroy {
-    constructor(private route: ActivatedRoute,private store: Store<AppState>,private router: Router) {}
+    constructor(private route: ActivatedRoute,private store: Store<AppState>,private router: Router,private dialog: MatDialog) {}
 
     book!:Book
     user!: User | null
@@ -33,7 +35,6 @@ export class BookDetailsComponent implements OnInit,OnDestroy {
           if(bookParam) {
             const book = JSON.parse(bookParam)
             this.book=book
-            console.log(book)
           }
         })
 
@@ -68,15 +69,23 @@ export class BookDetailsComponent implements OnInit,OnDestroy {
     buyNow() {
       if(this.user)  {
         const order = {
-          'user': this.user?.id,
-          'books': [this.book.id],
+          'user': this.user,
+          'books': [this.book],
           'is_paid': true,
           'total_price': this.book.price
         }
         
-        this.store.dispatch(createOrder({order: order}))
+        const dialogRef = this.dialog.open(CheckoutComponent,{
+          width: '500px',
+          data: {
+            order: order
+          }
+        })
 
-        this.router.navigate(['/orders'])
+        dialogRef.afterClosed().subscribe((result)=> {
+          console.log(result)
+          if(result) this.router.navigate(['orders'])
+        })
       }
     }
 

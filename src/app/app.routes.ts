@@ -12,6 +12,7 @@ import { BooksComponent } from './pages/books/books.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { GenresComponent } from './pages/genres/genres.component';
 import { MyOrdersComponent } from './pages/my-orders/my-orders.component';
+// import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 export const routes: Routes = [
     {path:'',component: BooklistComponent},

@@ -1,0 +1,30 @@
+<div class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-semibold mb-4">Checkout</h1>
+
+
+        <!-- Order Summary -->
+        <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
+
+            <!-- Book List (Replace with dynamic data) -->
+            <ul class="divide-y divide-gray-200">
+                <li class="flex justify-between py-2" *ngFor="let book of order.books">
+                    <span class="text-gray-700">{{book.title}}</span>
+                    <span class="text-gray-700">{{book.price}}</span>
+                </li>
+            </ul>
+
+            <!-- Total Price -->
+            <div class="flex justify-between mt-4">
+                <span class="text-lg font-semibold">Total:</span>
+                <span class="text-lg font-semibold">{{total_price}}</span>
+            </div>
+        </div>
+
+        <!-- Checkout Button -->
+        <div class="mt-8 flex justify-end">
+            <button class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600" (click)="placeOrder()">Place Order</button>
+        </div>
+    </div>
+</div>

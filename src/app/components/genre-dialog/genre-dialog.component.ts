@@ -29,12 +29,30 @@ export class GenreDialogComponent {
   }
 
   updateGenre() {
+    if(!this.name || this.name.length<3) {
+      alert('name should have atleast 3 letters')
+      return ;
+    }
+    if(!this.description || this.description.length<3) {
+      alert('description should have atleast 3 words')
+      return ;
+    }
+
     if(this.genre)
       this.store.dispatch(updateGenre({name: this.name,description: this.description,id : this.genre?.id}))
     this.dialogRef.close()
   }
 
   createGenre() {
+    if(!this.name || this.name.length<3) {
+      alert('name should have atleast 3 letters')
+      return ;
+    }
+    if(!this.description || this.description.length<3) {
+      alert('description should have atleast 3 words')
+      return ;
+    }
+    
     this.store.dispatch(createGenre({name:this.name,description: this.description}))
     this.dialogRef.close()
   }

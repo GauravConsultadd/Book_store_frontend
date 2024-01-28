@@ -13,7 +13,7 @@ export class UserEffects {
       ofType(userAction.registerUser),
       exhaustMap(({username,email,password,role})=> this.userService.register(username,email,password,role).pipe(
         map((user:User)=> userAction.registerUserSuccess({user})),
-        catchError((err)=> of(userAction.registerUserFailure(err.message)))
+        catchError((err)=> {console.log(err.error.message[0],"inside effect");return of(userAction.registerUserFailure({error:err.error.message[0]}))})
       ))
     )
   );
@@ -27,7 +27,7 @@ export class UserEffects {
           localStorage.setItem('refresh_token', response.refresh_token);
         }),
         map((response:any)=> userAction.logginUserSuccess({user: response.user})),
-        catchError((err)=> of(userAction.logginUserFailure(err.message)))
+        catchError((err)=> of(userAction.logginUserFailure({error: err.error.message[0]})))
       ))
     )
   )
@@ -38,7 +38,7 @@ export class UserEffects {
       exhaustMap(({token})=> this.userService.loadUser(token).pipe(
         map((res: any) => userAction.loadUserSuccess({access_token: res.access_token, refresh_token: res.refresh_token})),
         catchError((err)=> {
-          return of(userAction.logginUserFailure(err))
+          return of(userAction.logginUserFailure({error:err}))
         })
       ))
     )
@@ -50,8 +50,7 @@ export class UserEffects {
         exhaustMap(()=> this.userService.getUser().pipe(
           map((res: any) => userAction.getCurrentUserSuccess({user: res.user})),
           catchError((err)=> {
-            this.router.navigate(['/login'])
-            return of(userAction.logginUserFailure(err.message))
+            return of(userAction.logginUserFailure({error:err.message}))
           })
         ))
       )
@@ -65,7 +64,7 @@ export class UserEffects {
             return userAction.logoutUserSuccess()
           }),
           catchError((err)=> {
-            return of(userAction.logoutUserFailure(err))
+            return of(userAction.logoutUserFailure({error:err}))
           })
         ))
       )

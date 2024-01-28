@@ -5,13 +5,13 @@ import { logginUser } from '../../actions/user';
 import { UserService } from '../../services/user';
 import { AppState } from '../../reducers';
 import { userState } from '../../reducers/users';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,RouterModule],
   providers:[UserService,Router],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -22,8 +22,6 @@ export class LoginComponent implements OnDestroy,OnInit {
 
   user !: userState
   userSubscription !: Subscription
-
-
 
   constructor(private store: Store<AppState>,private router: Router) {}
 
@@ -48,6 +46,10 @@ export class LoginComponent implements OnDestroy,OnInit {
 
   
   onSubmit() {
+    if(this.email.length===0 || this.password.length===0) {
+      alert('Feilds should not be empty')
+      return;
+    }
     console.log(this.email,this.password)
     this.store.dispatch(logginUser({email: this.email,password: this.password}))
   }

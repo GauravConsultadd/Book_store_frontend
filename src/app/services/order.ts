@@ -39,5 +39,14 @@ export class OrderService {
         return this.http.get(`${this.baseUrl}/orders/getAll/`,{headers: headers})
     }
 
+    generateInvoice(id: number): Observable<any> {
+        let access_token = localStorage.getItem('access_token')
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${access_token}`,
+        });
+        
+        return this.http.get(`${this.baseUrl}/orders/invoice/${id}/`,{headers: headers,responseType: 'blob'})
+    }
     constructor(private http: HttpClient) {}
 }

@@ -9,6 +9,13 @@ export interface Order {
     is_paid: boolean
 }
 
+export interface CheckoutOrder {
+    user : User,
+    books: Book[],
+    total_price: number
+    is_paid: boolean
+}
+
 export interface AdminOrderModel {
     id: number
     books: Book[]

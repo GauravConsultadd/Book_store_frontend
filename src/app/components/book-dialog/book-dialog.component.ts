@@ -58,11 +58,11 @@ export class BookDialogComponent implements OnInit,OnDestroy {
   }
 
   onSubmit() {
-    if(!this.title || this.title==='') alert('title is required')
-    if(!this.description || this.description==='') alert('description is required')
+    if(!this.title || this.title.length<3) alert('title should have atleast 3 letters')
+    if(!this.description || this.description.length<3) alert('description should have atleast 3 characters')
     if(!this.cover_image_url || this.cover_image_url==='') alert('cover_image_url is required')
     if(!this.genre || this.genre==='') alert('genre is required')
-    if(!this.author || this.author==='') alert('author is required')
+    if(!this.author || this.author.length<3) alert('author should have 3 atleast letters')
     if(!this.price || this.price===0) alert('price is invalid')
 
     

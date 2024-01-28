@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { Store, select } from '@ngrx/store';
 import { getCurrentUser, initApp, loadUser } from './actions/user';
@@ -15,7 +15,7 @@ import { getCart } from './actions/carts';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,HeaderComponent],
+  imports: [CommonModule, RouterOutlet,HeaderComponent,RouterModule],
   providers:[UserService,Router],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -34,13 +34,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this.userSubscription=this.store.select('user').subscribe((data)=> {
       this.user=data.user
       
-      if(data.loading == false && this.user===null && !data.isLoggedOut) {
+      if(data.loading===false && this.user===null && !data.isLoggedOut) {
         this.store.dispatch(getCurrentUser())
         this.store.dispatch(getCart())
         this.store.dispatch(getAllBooks())
       }
       
-      if(data.isLoggedOut) this.router.navigate(['/login'])
+      if(data.isLoggedOut) {
+        this.router.navigate(['/login'])
+      }
     },(err)=> this.router.navigate(['/login']))
  }
 
