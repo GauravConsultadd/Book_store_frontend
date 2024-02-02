@@ -32,7 +32,7 @@ export class OrderEffect {
             ofType(orderActions.getAllOrders),
             exhaustMap(()=> this.orderService.getAllOrders().pipe(
                 map((res: any) => orderActions.getAllOrdersSuccess({orders: res.orders})),
-                catchError((err) => of(orderActions.getAllOrdersFailure(err)))
+                catchError((err) => of(orderActions.getAllOrdersFailure({error: err})))
             ))
         )
     ))

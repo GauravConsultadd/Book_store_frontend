@@ -7,7 +7,7 @@ import { updateBookModel } from "../models/book";
     providedIn: 'root'
 })
 export class BookService {
-    baseUrl = 'http://localhost:8000'
+    baseUrl = 'https://book-store-l6jt.onrender.com'
 
     getAllBooks(): Observable<any> {
         let access_token = localStorage.getItem('access_token')
@@ -40,6 +40,7 @@ export class BookService {
     }
 
     updateBook(book: updateBookModel): Observable<any> {
+        
         let access_token = localStorage.getItem('access_token')
         let headers = new HttpHeaders({
             'Content-Type': 'application/json', 
@@ -49,13 +50,21 @@ export class BookService {
     }
 
     createBook(book: updateBookModel): Observable<any> {
+        const formData = new FormData()
+        formData.set('title',book.title)
+        formData.set('description',book.description)
+        formData.set('author',book.author)
+        formData.set('genre',book.genre)
+        formData.set('cover_image_url',book.cover_image_url,book.cover_image_url.name)
+        formData.set('price',book.price.toString())
+
+        console.log(formData,"inside createBook")
         let access_token = localStorage.getItem('access_token')
         let headers = new HttpHeaders({
-            'Content-Type': 'application/json', 
             'Authorization': `Bearer ${access_token}`,
         });
 
-        return this.http.post(`${this.baseUrl}/books/create/`,{...book},{headers: headers})
+        return this.http.post(`${this.baseUrl}/books/create/`,formData,{headers: headers})
     }
 
     searchBook(searchText: string,authors: string[],genres: string[]): Observable<any> {

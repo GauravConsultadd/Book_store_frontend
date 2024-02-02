@@ -7,7 +7,6 @@ import { User } from "../models/user";
 
 @Injectable()
 export class CartEffect {
-    user !: User
     addToCart = createEffect(()=>
         this.actions.pipe(
             ofType(cartActions.addToCart),

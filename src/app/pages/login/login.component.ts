@@ -7,6 +7,7 @@ import { AppState } from '../../reducers';
 import { userState } from '../../reducers/users';
 import { Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -20,21 +21,22 @@ export class LoginComponent implements OnDestroy,OnInit {
   email!:string
   password!:string
 
-  user !: userState
+  user !: User|null
   userSubscription !: Subscription
 
   constructor(private store: Store<AppState>,private router: Router) {}
 
   ngOnInit(): void {
       this.userSubscription=this.store.select('user').subscribe((data)=> {
-        this.user=data
-        // console.log("here")
-        if(this.user?.user) {
-          console.log("here")
-          this.router.navigate(['/']);
+        this.user=data.user
+        if(data.isLoggedOut) {
+          this.router.navigate(['/login'])
+        }
+        if(data.user) {
+          this.router.navigate(['/'])
         }
       },
-      (err)=> alert(err)
+
     )
   }
 

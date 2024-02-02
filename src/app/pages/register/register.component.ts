@@ -65,12 +65,13 @@ export class RegisterComponent implements OnDestroy {
     this.userSubscription = this.store.select('user').subscribe((data) => {
       this.user = data;
   
-      if (data.error) {
+      if (data.error && data) {
         alert(data.error);
       }
   
-      if (!data.error) {
-        // Only navigate to '/login' if there is no error
+      if (!data.error && data.isLoggedOut) {
+        console.log(data.error)
+        console.log('routing from here')
         this.router.navigate(['/login']);
       }
     }, (err) => alert(err));

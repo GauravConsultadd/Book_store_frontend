@@ -5,7 +5,7 @@ import { deleteGenre } from "../actions/genre";
 
 @Injectable({providedIn: 'root'})
 export class GenreService {
-    baseUrl='http://localhost:8000'
+    baseUrl='https://book-store-l6jt.onrender.com'
 
     getAllGenre(): Observable<any> {
         let access_token = localStorage.getItem('access_token')
@@ -27,7 +27,7 @@ export class GenreService {
         return this.http.post(`${this.baseUrl}/genres/create/`,{name,description},{headers: headers})
     }
 
-    updateGenre(name: string,description: string, id: number) {
+    updateGenre(name: string,description: string, id: number): Observable<any> {
         let access_token = localStorage.getItem('access_token')
         let headers = new HttpHeaders({
             'Content-Type': 'application/json', 

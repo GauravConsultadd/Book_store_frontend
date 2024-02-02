@@ -1,22 +1,22 @@
-<div class=" w-full flex flex-col md:flex-row shadow-md">
-    <div class="md:w-4/12">
-        <img src={{book.cover_image_url}} alt="book cover" class="h-fit max-h-80 w-full" />
-    </div>
-    <div class="p-8">
-        <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{{book.title}}</div>
-        <p class="block mt-1 text-lg leading-tight font-medium text-black">{{book.description}}</p>
-        <p class="mt-2 text-gray-500 font-semibold">Genre: {{book.genre}}</p>
-        <p class="mt-2 text-gray-500">Pice: {{book.price}}</p>
-        <div class="mt-4">
-          <span class="text-sm font-medium text-gray-600">Author: {{book.author}}</span>
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-5 mt-5">
+<div class="flex p-8 justify-center">
+    <div class="flex flex-col md:flex-row">
+        <img src={{book.cover_image_url}} alt="book cover" class="w-full md:w-4/12 max-h-96" />
+        <div class="p-8">
+          <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{{book.title}}</div>
+          <p class="block mt-1 text-lg leading-tight font-medium text-black">{{book.description}}</p>
+          <p class="mt-2 text-gray-500 font-semibold">Genre: {{book.genre}}</p>
+          <p class="mt-2 text-gray-500">Pice: {{book.price}}</p>
+          <div class="mt-4">
+            <span class="text-sm font-medium text-gray-600">Author: {{book.author}}</span>
+          </div>
+          
+          <div class="flex flex-col md:flex-row gap-5 mt-5">
             <button *ngIf="!isAdmin" class="bg-green-500 h-12 w-full">
               <p (click)="openDialog(true)">Update Book</p>
               <!-- <p>Add to cart</p> -->
             </button>
             <button class="bg-red-400 h-12 w-full" (click)="onDelete()">Delete Book</button>
+          </div>
         </div>
       </div>
 </div>

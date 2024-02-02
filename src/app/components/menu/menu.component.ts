@@ -5,7 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers';
-import { logoutUser } from '../../actions/user';
+import { logoutUser, logoutUserSuccess } from '../../actions/user';
 import { User } from '../../models/user';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -25,6 +25,7 @@ export class MenuComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
       this.userSubscription = this.store.select('user').subscribe((data)=> {
         this.user = data.user
+        if(data.isLoggedOut) this.router.navigate(['/login'])
       },(err) => console.log(err))
   }
 
@@ -33,7 +34,9 @@ export class MenuComponent implements OnInit,OnDestroy {
   }
 
   logout() {
-    this.store.dispatch(logoutUser())
+    localStorage.clear()
+    this.store.dispatch(logoutUserSuccess())
+    this.router.navigate(['/login'])
   }
 
   constructor(private store: Store<AppState>,private router: Router) {}

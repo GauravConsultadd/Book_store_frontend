@@ -7,7 +7,7 @@ import { Observable, of } from "rxjs";
 })
 
 export class UserService {
-    baseUrl="http://localhost:8000"
+    baseUrl="https://book-store-l6jt.onrender.com"
 
     constructor(private http: HttpClient) {}
 
@@ -29,8 +29,7 @@ export class UserService {
 
     getUser(): Observable<any> {
         let access_token = localStorage.getItem('access_token')
-        // console.log("ac token", access_token);
-        console.log("here in getUser()")
+        // console.log("ac token", access_token)
         if(access_token) {
             const headers = new HttpHeaders({
                 'Content-Type': 'application/json', 

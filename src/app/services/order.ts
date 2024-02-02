@@ -7,7 +7,7 @@ import { createOrderModel } from "../models/order";
     providedIn: 'root'
 })
 export class OrderService {
-    baseUrl = 'http://localhost:8000'
+    baseUrl = 'https://book-store-l6jt.onrender.com'
 
     createOrder(order: createOrderModel) : Observable<any> {
         let access_token = localStorage.getItem('access_token')

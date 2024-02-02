@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()" class="m-5">
+<form (ngSubmit)="onSubmit()" class="m-5" enctype="multipart/form-data">
     <h2 class="text-2xl font-extrabold" *ngIf="isUpdate">Update Book</h2>
     <h2 class="text-2xl font-extrabold" *ngIf="!isUpdate">Create Book</h2>
 
@@ -13,8 +13,8 @@
     </label>
 
     <label for="image" class="w-full">
-        <div class="font-semibold text-lg">Image Url: </div>
-        <input type="text" name="image" required [placeholder]="!cover_image_url && 'Image Url'"  [(ngModel)]="cover_image_url" id="image" class="w-full p-2 border rounded-md outline-gray-600 border-black" />
+        <div class="font-semibold text-lg">Image </div>
+        <input type="file" accept="image/*" (change)="onFileChanged($event)" name="image" required [placeholder]="!cover_image_url && 'Image Url'" id="image" class="w-full p-2 border rounded-md outline-gray-600 border-black" />
     </label>
 
     <label for="genre" class="w-full">

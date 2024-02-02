@@ -15,7 +15,7 @@ export const userReducer = createReducer(
     initialState,
     on(registerUser, (state)=> ({...state,loading: true})),
     on(registerUserSuccess, (state, { user }) => ({ ...state,loading: false,error:null,isLoggedOut: true /* update state with the user data */ })),
-    on(registerUserFailure, (state, {error}) => ({...state,error: error,loading: false,isLoggedOut: true})),
+    on(registerUserFailure, (state, {error}) => ({...state,error,loading: false,isLoggedOut: true})),
 
     on(logginUser,(state => ({...state,loading: true}))),
     on(logginUserSuccess,(state, {user}) => ({...state,user,loading: false,error:null,isLoggedOut: false})),
@@ -28,7 +28,7 @@ export const userReducer = createReducer(
         return {...state,error: null}
     }),
     on(logginUserFailure,(state, {error}) => {
-        alert("Please login")
+        alert("Please check login credentials")
         return {...state,error,loading: false}
     }),
 

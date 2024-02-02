@@ -13,7 +13,7 @@ export class UserEffects {
       ofType(userAction.registerUser),
       exhaustMap(({username,email,password,role})=> this.userService.register(username,email,password,role).pipe(
         map((user:User)=> userAction.registerUserSuccess({user})),
-        catchError((err)=> {console.log(err.error.message[0],"inside effect");return of(userAction.registerUserFailure({error:err.error.message[0]}))})
+        catchError((err)=> {console.log(err.error.message,"inside effect");return of(userAction.registerUserFailure({error: err.error.message}))})
       ))
     )
   );
@@ -25,8 +25,9 @@ export class UserEffects {
         tap((response: any)=> {
           localStorage.setItem('access_token', response.access_token);
           localStorage.setItem('refresh_token', response.refresh_token);
+          localStorage.setItem('user',JSON.stringify(response.user))
         }),
-        map((response:any)=> userAction.logginUserSuccess({user: response.user})),
+        map((response:any)=> {return userAction.logginUserSuccess({user: response.user})}),
         catchError((err)=> of(userAction.logginUserFailure({error: err.error.message[0]})))
       ))
     )
@@ -50,7 +51,7 @@ export class UserEffects {
         exhaustMap(()=> this.userService.getUser().pipe(
           map((res: any) => userAction.getCurrentUserSuccess({user: res.user})),
           catchError((err)=> {
-            return of(userAction.logginUserFailure({error:err.message}))
+            return of(userAction.getCurrentUserFailure({error:err.message}))
           })
         ))
       )
@@ -61,6 +62,7 @@ export class UserEffects {
         ofType(userAction.logoutUser),
         exhaustMap(()=> this.userService.logoutUser().pipe(
           map((res: any) => {
+            this.router.navigate(['login'])
             return userAction.logoutUserSuccess()
           }),
           catchError((err)=> {

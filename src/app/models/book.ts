@@ -4,7 +4,7 @@ import { User } from "./user";
 export interface Book {
     id: number
     title: string,
-    cover_image_url: string,
+    cover_image_url: File,
     author: string,
     description: string,
     genre: string,
@@ -16,7 +16,7 @@ export interface Book {
 export interface updateBookModel {
     id:number,
     title: string,
-    cover_image_url: string,
+    cover_image_url: File,
     author: string,
     description: string,
     genre: string,

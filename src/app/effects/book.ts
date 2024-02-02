@@ -14,7 +14,7 @@ export class BookEffects {
             exhaustMap(()=> {return this.bookService.getAllBooks().pipe(
                 map((res: any)=> bookActions.getAllBooksSuccess({books: res.books})),
                 catchError((err)=> {
-                    return of(bookActions.getAllBooksFailure(err.message))
+                    return of(bookActions.getAllBooksFailure({error: err.message}))
                 })
             )})
         )
@@ -26,7 +26,7 @@ export class BookEffects {
             exhaustMap(()=> {return this.bookService.getInventory().pipe(
                 map((res: any) => {return bookActions.getMyInventorySuccess({books: res.books})}),
                 catchError((err)=> {
-                    return of(bookActions.getMyInventoryFailure(err))
+                    return of(bookActions.getMyInventoryFailure({error: err.message}))
                 })
             
             )})

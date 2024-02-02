@@ -1,6 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Pipe, PipeTransform  } from '@angular/core';
 import { Book } from '../../models/book';
 import { Router, RouterModule } from '@angular/router';
+
+@Pipe({
+  name: 'truncate'
+})
+export class TruncatePipe implements PipeTransform {
+  transform(value: string, maxLength: number): string {
+    if (value.length > maxLength) {
+      return value.substring(0, maxLength) + '...';
+    }
+    return value;
+  }
+}
 
 @Component({
   selector: 'app-book-card',
@@ -9,11 +21,12 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './book-card.component.html',
   styleUrl: './book-card.component.css'
 })
-export class BookCardComponent {
+export class BookCardComponent implements OnInit {
   @Input() book!: Book
-  image!:string
 
-
+  ngOnInit(): void {
+    console.log(this.book.cover_image_url)
+  }
   onClick() {
     this.router.navigate(['/book-details'],{queryParams: {book: JSON.stringify(this.book)}})
   }

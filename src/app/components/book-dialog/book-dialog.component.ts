@@ -22,25 +22,26 @@ export class BookDialogComponent implements OnInit,OnDestroy {
   id !:number
   title !: string
   description !: string
-  cover_image_url !: string
+  cover_image_url : File | null = null
   genre !: string
   author !: string
   price !: number
 
   genreSubscription !: Subscription
   genres !: Genre[]
+  formData !: FormData
 
   constructor(@Inject(MAT_DIALOG_DATA) public dialogData: {book: Book,isUpdate: boolean},private dialogRef: MatDialogRef<BookDialogComponent>,private store: Store<AppState>) {
     if(dialogData.book) {
       this.id = dialogData.book.id
       this.title = dialogData.book.title
       this.description = dialogData.book.description
-      this.cover_image_url = dialogData.book.cover_image_url
       this.genre = dialogData.book.genre
       this.author = dialogData.book.author
       this.price = dialogData.book.price
     }
     this.isUpdate = dialogData.isUpdate
+    this.formData = new FormData()
   }
 
   ngOnInit(): void {
@@ -57,15 +58,20 @@ export class BookDialogComponent implements OnInit,OnDestroy {
       if(this.genreSubscription) this.genreSubscription.unsubscribe()
   }
 
+  onFileChanged(event: any) {
+    const file: File = event.target.files[0];
+    this.cover_image_url=file
+  }
+
   onSubmit() {
     if(!this.title || this.title.length<3) alert('title should have atleast 3 letters')
     if(!this.description || this.description.length<3) alert('description should have atleast 3 characters')
-    if(!this.cover_image_url || this.cover_image_url==='') alert('cover_image_url is required')
+    if(!this.cover_image_url) alert('cover_image_url is required')
     if(!this.genre || this.genre==='') alert('genre is required')
     if(!this.author || this.author.length<3) alert('author should have 3 atleast letters')
     if(!this.price || this.price===0) alert('price is invalid')
-
     
+
     this.dialogRef.close({
       'id': this.id,
       'title': this.title,
