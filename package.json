@@ -9,6 +9,9 @@
     "test": "ng test",
     "serve:ssr:book_store": "node dist/book_store/server/server.mjs"
   },
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^17.0.0",

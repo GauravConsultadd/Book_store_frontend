@@ -21,12 +21,8 @@ export class TruncatePipe implements PipeTransform {
   templateUrl: './book-card.component.html',
   styleUrl: './book-card.component.css'
 })
-export class BookCardComponent implements OnInit {
+export class BookCardComponent  {
   @Input() book!: Book
-
-  ngOnInit(): void {
-    console.log(this.book.cover_image_url)
-  }
   onClick() {
     this.router.navigate(['/book-details'],{queryParams: {book: JSON.stringify(this.book)}})
   }
