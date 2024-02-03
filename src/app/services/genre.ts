@@ -5,7 +5,7 @@ import { deleteGenre } from "../actions/genre";
 
 @Injectable({providedIn: 'root'})
 export class GenreService {
-    baseUrl='https://book-store-l6jt.onrender.com'
+    baseUrl='https://bookbackend.azurewebsites.net'
 
     getAllGenre(): Observable<any> {
         let access_token = localStorage.getItem('access_token')

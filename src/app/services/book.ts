@@ -7,7 +7,7 @@ import { updateBookModel } from "../models/book";
     providedIn: 'root'
 })
 export class BookService {
-    baseUrl = 'https://book-store-l6jt.onrender.com'
+    baseUrl = 'https://bookbackend.azurewebsites.net'
 
     getAllBooks(): Observable<any> {
         let access_token = localStorage.getItem('access_token')
