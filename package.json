@@ -10,7 +10,7 @@
     "serve:ssr:book_store": "node dist/book_store/server/server.mjs"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "private": true,
   "dependencies": {
