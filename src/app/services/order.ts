@@ -7,7 +7,8 @@ import { createOrderModel } from "../models/order";
     providedIn: 'root'
 })
 export class OrderService {
-    baseUrl = 'https://bookbackend.azurewebsites.net'
+    // baseUrl = 'https://bookbackend.azurewebsites.net'
+    baseUrl = 'http://localhost:8000'
 
     createOrder(order: createOrderModel) : Observable<any> {
         let access_token = localStorage.getItem('access_token')

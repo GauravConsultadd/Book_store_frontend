@@ -13,3 +13,7 @@ export const getCartFailure = createAction('GET_CART_FAILURE',props<{error: any}
 export const removeFromCart = createAction('REMOVE_FROM_CART',props<{id: number}>())
 export const removeFromCartSuccess = createAction('REMOVE_FROM_CART_SUCCESS',props<{cart: CartItem[]}>())
 export const removeFromCartFailure = createAction('REMOVE_FROM_CART_SUCCESS',props<{error: any}>())
+
+export const removeAllCart = createAction('REMOVE_ALL_CART')
+export const removeAllCartSuccess = createAction('REMOVE_ALL_CART_SUCCESS',props<{cart: CartItem[]}>())
+export const removeAllCartFailure = createAction('REMOVE_ALL_CART_FAILURE',props<{error: any}>())

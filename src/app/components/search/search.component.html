@@ -1,5 +1,5 @@
 <div class="w-full flex relative">
-    <input type="text" placeholder="Search" [(ngModel)]="query.searchText" class="border-black outline-none rounded-md h-9 w-52 sm:w-60 md:w-96 p-5 max-w-2xl" />
+    <input type="text" placeholder="Search" [(ngModel)]="query.searchText" (input)="onChange()" class="border-black outline-none rounded-md h-9 w-52 sm:w-60 md:w-96 p-5 max-w-2xl" />
   
     <div class="flex items-center absolute right-3 top-3">
       <img src="../../../assets/filter.png" class="cursor-pointer" width="20px" alt="filter icon" (click)="openFilterDialog()" />

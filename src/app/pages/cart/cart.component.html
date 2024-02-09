@@ -2,5 +2,9 @@
     <div class="grid grid-cols-1 gap-8" *ngIf="books">
         <app-cartitem *ngFor="let cartItem of cart" [cartItem]="cartItem" [books]="books"></app-cartitem>
     </div>
-    
+
+    <div class="flex justify-between mt-3">
+        <p class="text-lg">Your total is {{totalPrice}}</p>
+        <button class="p-2 bg-blue-500 text-white" (click)="onBuy()">Buy Now</button>
+    </div>
 </div>

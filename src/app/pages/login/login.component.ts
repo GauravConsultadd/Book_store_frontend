@@ -46,6 +46,9 @@ export class LoginComponent implements OnDestroy,OnInit {
       }
   }
 
+  forgotPassword() {
+    this.router.navigate(['/forgot'])
+  }
   
   onSubmit() {
     if(this.email.length===0 || this.password.length===0) {

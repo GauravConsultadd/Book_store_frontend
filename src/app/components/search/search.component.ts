@@ -5,6 +5,7 @@ import { AppState } from '../../reducers';
 import { MatDialog } from '@angular/material/dialog';
 import { FilterDialogComponent } from '../filter-dialog/filter-dialog.component';
 import { getAllBooks, searchBook } from '../../actions/books';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -13,7 +14,7 @@ import { getAllBooks, searchBook } from '../../actions/books';
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
 
   query : {searchText: string,authors: string[],genres:[]}={
     searchText: '',
@@ -21,10 +22,24 @@ export class SearchComponent {
     genres:[]
   }
   
+  private searchStream = new Subject<string>()
+
+  ngOnInit(): void {
+    this.searchStream.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+    ).subscribe((text: string) => {
+      this.store.dispatch(searchBook(this.query))
+    })
+  }
+
+  onChange() {
+    console.log("some")
+    this.searchStream.next(this.query.searchText)
+  }
 
   fetchResults() {
     this.store.dispatch(searchBook(this.query))
-    console.log('dispatched')
   }
 
   clearFilter() {

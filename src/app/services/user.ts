@@ -5,9 +5,9 @@ import { Observable, of } from "rxjs";
 @Injectable({
     providedIn: 'root'
 })
-
 export class UserService {
-    baseUrl="https://bookbackend.azurewebsites.net"
+    // baseUrl="https://bookbackend.azurewebsites.net"
+    baseUrl = 'http://localhost:8000'
 
     constructor(private http: HttpClient) {}
 
@@ -64,4 +64,25 @@ export class UserService {
 
         return this.http.get(`${this.baseUrl}/users/admin/`,{headers: headers})
     }
+
+    changeUserRole(id: number,role: string): Observable<any> {
+        let refresh_token = localStorage.getItem('refresh_token')
+        let access_token = localStorage.getItem('access_token')
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${access_token}`,
+        });
+
+        return this.http.put(`${this.baseUrl}/users/role/`,{id,role},{headers: headers})
+    }
+
+    forgotPassword(email: string): Observable<any> {
+        return this.http.post(`${this.baseUrl}/users/forgot/`,{email})
+    }
+
+    resetPassword(password: string,uidb64: string,token: string): Observable<any> {
+        return this.http.post(`${this.baseUrl}/users/reset/${uidb64}/${token}/`,{password: password})
+    }
+
 }

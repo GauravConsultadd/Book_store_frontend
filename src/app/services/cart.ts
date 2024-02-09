@@ -7,7 +7,8 @@ import { Injectable } from "@angular/core";
     providedIn: 'root'
 })
 export class CartService {
-    baseUrl='https://bookbackend.azurewebsites.net'
+    // baseUrl='https://bookbackend.azurewebsites.net'
+    baseUrl = 'http://localhost:8000'
 
     addToCart(userId: number,bookId: number,price: number,quantity: number ): Observable<any> {
         let access_token = localStorage.getItem('access_token')
@@ -37,6 +38,16 @@ export class CartService {
         });
 
         return this.http.delete(`${this.baseUrl}/carts/${id}/`,{headers: headers})
+    }
+
+    removeAllCart() : Observable<any> {
+        let access_token = localStorage.getItem('access_token')
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${access_token}`,
+        });
+
+        return this.http.delete(`${this.baseUrl}/carts/`,{headers: headers})
     }
 
     constructor(private http: HttpClient) {}

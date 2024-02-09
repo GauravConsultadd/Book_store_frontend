@@ -36,5 +36,15 @@ export class CartEffect {
             ))
         )
     )
+
+    removeAllCart = createEffect(()=> 
+        this.actions.pipe(
+            ofType(cartActions.removeAllCart),
+            exhaustMap(() => this.cartService.removeAllCart().pipe(
+                map((res: any) => cartActions.removeAllCartSuccess({cart: res.cart})),
+                catchError((err)=> of(cartActions.removeAllCartFailure({error: err})))
+            ))
+        )
+    )
     constructor(private actions: Actions,private cartService: CartService) {}
 }

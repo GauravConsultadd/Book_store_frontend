@@ -1,6 +1,6 @@
 import { createReducer,on } from "@ngrx/store"
 import { User } from "../models/user"
-import { getCurrentUser, getCurrentUserFailure, getCurrentUserSuccess, loadUser, loadUserFailure, loadUserSuccess, logginUser, logginUserFailure, logginUserSuccess, logoutUser, logoutUserFailure, logoutUserSuccess, registerUser, registerUserFailure, registerUserSuccess } from "../actions/user"
+import { forgotPassword, forgotPasswordFailure, forgotPasswordSuccess, getCurrentUser, getCurrentUserFailure, getCurrentUserSuccess, loadUser, loadUserFailure, loadUserSuccess, logginUser, logginUserFailure, logginUserSuccess, logoutUser, logoutUserFailure, logoutUserSuccess, registerUser, registerUserFailure, registerUserSuccess, resetPassword, resetPasswordFailure, resetPasswordSuccess } from "../actions/user"
 // import { CartItem } from "../models/cartItem"
 
 export interface userState {
@@ -39,6 +39,14 @@ export const userReducer = createReducer(
     on(logoutUser, state => ({...state,loading: true})),
     on(logoutUserSuccess, state => {localStorage.clear();return ({...state,loading: false,error: null,user: null,isLoggedOut:true})}),
     on(logoutUserFailure, (state,{error}) => ({...state,loading: false,error})),
+
+    on(forgotPassword,state => ({...state,loading: true})),
+    on(forgotPasswordSuccess,(state) => ({...state,loading: false})),
+    on(forgotPasswordFailure,(state,{error}) => ({...state,loading: false,error: error})),
+
+    on(resetPassword,(state)=> ({...state,loading: true})),
+    on(resetPasswordSuccess,(state)=> ({...state,loading: false})),
+    on(resetPasswordFailure,(state,{error})=> ({...state,loading: false,error})),
 )
 
 

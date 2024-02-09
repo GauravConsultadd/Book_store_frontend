@@ -23,7 +23,6 @@ export class OrdersComponent implements OnInit,OnDestroy {
       this.orders=data.orders
 
       if(!data.loading) {
-        console.log("inside dispatch")
         this.store.dispatch(getAllOrders())
       }
     })

@@ -2,7 +2,7 @@ import { createReducer, on } from "@ngrx/store";
 import { Genre } from "../models/Genre";
 import { Book } from "../models/book";
 import { User } from "../models/user";
-import { getAllUser, getAllUserFailure, getAllUserSuccess } from "../actions/user";
+import { changeRole, changeRoleFailure, changeRoleSuccess, getAllUser, getAllUserFailure, getAllUserSuccess } from "../actions/user";
 import { getAllOrders, getAllOrdersFailure, getAllOrdersSuccess } from "../actions/orders";
 import { AdminOrderModel } from "../models/order";
 
@@ -29,4 +29,8 @@ export const adminReducer = createReducer(
     on(getAllOrders,(state)=> ({...state,loading: true})),
     on(getAllOrdersSuccess,(state,{orders})=> ({...state,orders,loading: false})),
     on(getAllOrdersFailure,(state,{error})=> ({...state,error,loading: false})),
+
+    on(changeRole,(state)=> ({...state,loading: true})),
+    on(changeRoleSuccess,(state,{users})=> ({...state,loading: false,users})),
+    on(changeRoleFailure,(state,{error})=> ({...state,loading: false,error}))
 )

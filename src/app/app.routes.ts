@@ -15,6 +15,8 @@ import { MyOrdersComponent } from './pages/my-orders/my-orders.component';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 import { hasRoleGuard } from './has-role.guard';
 import { Role } from './role';
+import { ForgotComponent } from './pages/forgot/forgot.component';
+import { ResetComponent } from './pages/reset/reset.component';
 // import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 export const routes: Routes = [
@@ -61,4 +63,6 @@ export const routes: Routes = [
       roles: [ Role.Admin ]
     }},
     {path: 'unauthorized',component: UnauthorizedComponent},
+    {path: 'forgot',component: ForgotComponent},
+    {path: 'reset/:uidb64/:token',component: ResetComponent},
 ];

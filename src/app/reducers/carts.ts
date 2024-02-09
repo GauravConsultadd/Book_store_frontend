@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { CartItem } from "../models/cartItem";
-import { addToCart, addToCartFailure, addToCartSuccess, getCart, getCartSuccess, removeFromCart, removeFromCartFailure, removeFromCartSuccess } from "../actions/carts";
+import { addToCart, addToCartFailure, addToCartSuccess, getCart, getCartSuccess, removeAllCart, removeAllCartSuccess, removeFromCart, removeFromCartFailure, removeFromCartSuccess } from "../actions/carts";
 import { logoutUser, logoutUserFailure, logoutUserSuccess } from "../actions/user";
 
 export interface cartItemState {
@@ -24,5 +24,9 @@ export const cartItemReducer=createReducer(
     on(removeFromCart,state => ({...state,loading:true})),
     on(removeFromCartSuccess,(state,{cart}) => ({...state,loading:false,cart,error: null})),
     on(removeFromCartFailure,(state,{error}) => ({...state,loading:true,error})),
+
+    on(removeAllCart,(state) => ({...state,loading: true})),
+    on(removeAllCartSuccess,(state,{cart}) => ({...state,loading: false,cart})),
+    on(removeFromCartFailure,(state,{error}) => ({...state,loading: false,error})),
 
 )

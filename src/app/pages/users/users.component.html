@@ -13,7 +13,13 @@
                 <td class="py-2 px-4 border-b border-r text-center" style="width: 10%;">{{ user.id }}</td>
                 <td class="py-2 px-4 border-b border-r text-center" style="width: 30%;">{{ user.username }}</td>
                 <td class="py-2 px-4 border-b border-r text-center" style="width: 30%;">{{ user.email }}</td>
-                <td class="py-2 px-4 border-b text-center" style="width: 30%;">{{ user.role }}</td>
+                <td class="py-2 px-4 border-b text-center" style="width: 30%;">
+                    <select id="options" name="options" (change)="changeRole(user.id,$event)">
+                        <option value="Admin" [selected]="user.role==='Admin'">Admin</option>
+                        <option value="Buyer" [selected]="user.role==='Buyer'">Buyer</option>
+                        <option value="Seller" [selected]="user.role==='Seller'">Seller</option>
+                    </select>
+                </td>
             </tr>
         </tbody>
     </table>

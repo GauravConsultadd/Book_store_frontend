@@ -27,3 +27,15 @@ export const logoutUserFailure = createAction('LOGOUT_USER_FAILURE',props<{error
 export const getAllUser = createAction('GET_ALL_USER')
 export const getAllUserSuccess = createAction('GET_ALL_USER_SUCCESS',props<{users: User[]}>())
 export const getAllUserFailure = createAction('GET_ALL_USER_FAILURE',props<{error: any}>())
+
+export const changeRole = createAction('CHANGE_ROLE',props<{id: number,role: string}>())
+export const changeRoleSuccess = createAction('CHANGE_ROLE_SUCCESS',props<{users: User[]}>())
+export const changeRoleFailure = createAction('CHANGE_ROLE_FAILURE',props<{error: any}>())
+
+export const forgotPassword= createAction('FORGOT_PASSWORD',props<{email: string}>())
+export const forgotPasswordSuccess= createAction('FORGOT_PASSWORD_SUCCESS')
+export const forgotPasswordFailure= createAction('FORGOT_PASSWORD_FAILURE',props<{error: any}>())
+
+export const resetPassword = createAction('RESET_PASSWORD',props<{password: string,uidb64: string,token: string}>())
+export const resetPasswordSuccess = createAction('REST_PASSWORD_SUCCESS')
+export const resetPasswordFailure= createAction('RESET_PASSWORD_FAILURE',props<{error: any}>())
