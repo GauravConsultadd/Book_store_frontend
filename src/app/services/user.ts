@@ -7,7 +7,7 @@ import { Observable, of } from "rxjs";
 })
 export class UserService {
     // baseUrl="https://bookbackend.azurewebsites.net"
-    baseUrl = 'http://localhost:8000'
+    baseUrl = 'https://bookbackend.azurewebsites.net'
 
     constructor(private http: HttpClient) {}
 

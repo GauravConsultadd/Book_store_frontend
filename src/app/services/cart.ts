@@ -8,7 +8,7 @@ import { Injectable } from "@angular/core";
 })
 export class CartService {
     // baseUrl='https://bookbackend.azurewebsites.net'
-    baseUrl = 'http://localhost:8000'
+    baseUrl = 'https://bookbackend.azurewebsites.net'
 
     addToCart(userId: number,bookId: number,price: number,quantity: number ): Observable<any> {
         let access_token = localStorage.getItem('access_token')
